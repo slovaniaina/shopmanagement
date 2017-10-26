@@ -49,8 +49,11 @@ namespace ShopManagement
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
-                    name: "shop",
+                    name: "article",
                     template: "{controller=Articles}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "shop",
+                    template: "{controller=Shops}/{action=Index}/{id?}");
             });
         }
     }

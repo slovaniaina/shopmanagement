@@ -12,29 +12,52 @@ namespace ShopManagement.Models
             using (var context = new ApplicationContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationContext>>()))
             {
-                // Look for any articles.
-                if (context.Article.Any())
-                {
-                    return;   // DB has been seeded
-                }
-
-                context.Article.AddRange(
-                    new Article
-                     {
-                         Name = "Calligraphe", 
-                    Type = "Cahier",
-                    Price = 7
-                     },
-
-                    new Article
-                    {
-                        Name = "Bic",
-                        Type = "Pen",
-                        Price = 13
-                    }
-                );
+                InitializeArticle(context);
+                InitializeShop(context);
                 context.SaveChanges();
             }
+        }
+
+        static void InitializeArticle(ApplicationContext context)
+        {
+            // Look for any articles.
+            if (context.Article.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            context.Article.AddRange(
+                new Article
+                {
+                    Name = "Calligraphe",
+                    Type = "Cahier",
+                    Price = 7
+                },
+
+                new Article
+                {
+                    Name = "Bic",
+                    Type = "Pen",
+                    Price = 13
+                }
+            );
+        }
+
+        static void InitializeShop(ApplicationContext context){
+            if(context.Shop.Any()){
+                return;
+            }
+
+            context.Shop.AddRange(
+                new Shop{
+                    Name = "Super U",
+                    Location = "New York"
+                },
+                new Shop{
+                    Name = "Jumbo",
+                    Location = "Phoenix"
+                }
+            );
         }
     }
 }

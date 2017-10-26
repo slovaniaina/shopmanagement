@@ -10,5 +10,7 @@ namespace ShopManagement.Models
         }
 
         public DbSet<Article> Article { get; set; }
+
+        public DbSet<Shop> Shop { get; set; }
     }
 }
